@@ -11,7 +11,7 @@ export async function fetchToken() {
   const credentials = Buffer.from(`${username}:${password}`).toString("base64");
 
   const response = await apiRequest<{ access_token: string; expires_in: number; token_type: string }>(
-    `${process.env.THIRD_PARTY_AUTH_BASE_URL}/oauth2/token?grant_type=client_credentials`,
+    `https://third-party.auth.eu-west-1.amazoncognito.com/oauth2/token?grant_type=client_credentials`,
     {
       method: "POST",
       headers: {
