@@ -1,8 +1,8 @@
 import { apiRequest } from "./http";
 
 export async function fetchToken() {
-  const username = process.env.THIRD_PARTY_AUTH_USERNAME;
-  const password = process.env.THIRD_PARTY_AUTH_PASSWORD;
+  const username = '5llgj89o9lhrm4h41opbjqrpbl'
+  const password = 'miskrmt9knusd1tm790a790jd61chesalugrfulabsdvhmmsbcm';
 
   if (!username || !password) {
     throw new Error("Missing THIRD_PARTY_AUTH_USERNAME or THIRD_PARTY_AUTH_PASSWORD");
