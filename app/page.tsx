@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation"; // ✅ FIX: Correct router import
 
 export default function CheckNetworkPage() {
   const [useSafdata, setUseSafdata] = useState(false);
-  const router = useRouter(); // ✅ FIX: Correct way to use router in App Router
 
   useEffect(() => {
     async function checkNetwork() {
