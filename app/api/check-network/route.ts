@@ -24,6 +24,8 @@ export async function GET(request: Request) {
 
     const data = await res.json();
 
+    console.log('THE DATA IS',data)
+
     if (data?.header?.responseCode === 403) {
       console.error("User is not on Safaricom Mobile Data.");
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });

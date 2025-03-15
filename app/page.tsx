@@ -12,15 +12,8 @@ export default function CheckNetworkPage() {
     async function checkNetwork() {
       try {
         const res = await fetch("/api/check-network");
-
-        console.log("RESP",res)
-        const data = await res.json();
-
-        if (!res.ok || data?.error) {
+        if (!res?.ok) {
           setUseSafdata(true);
-          if (data.redirect) {
-            router.push(data.redirect);
-          }
         }
       } catch (error) {
         console.error("Failed to fetch network status:", error);
@@ -28,7 +21,7 @@ export default function CheckNetworkPage() {
     }
 
     checkNetwork();
-  }, [router]); 
+  }, []); 
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-teal-100 p-4">
