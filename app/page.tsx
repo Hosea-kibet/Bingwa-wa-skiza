@@ -1,11 +1,34 @@
-import { getTodos } from '@/lib/db/queries';
-import Image from 'next/image';
+"use client";
 
-// This will be replaced by 'use cache' soon
-export const dynamic = 'force-static';
-export default async function () {
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ FIX: Correct router import
 
-  const useSafdata = true;
+export default function CheckNetworkPage() {
+  const [useSafdata, setUseSafdata] = useState(false);
+  const router = useRouter(); // ✅ FIX: Correct way to use router in App Router
+
+  useEffect(() => {
+    async function checkNetwork() {
+      try {
+        const res = await fetch("/api/check-network");
+
+        console.log("RESP",res)
+        const data = await res.json();
+
+        if (!res.ok || data?.error) {
+          setUseSafdata(true);
+          if (data.redirect) {
+            router.push(data.redirect);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch network status:", error);
+      }
+    }
+
+    checkNetwork();
+  }, [router]); 
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-teal-100 p-4">
