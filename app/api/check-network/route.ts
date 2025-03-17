@@ -30,8 +30,8 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    return NextResponse.json(data);
-  } catch (error) {
+    return NextResponse.json(data.response);
+  } catch (error) { 
     console.error("Error:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }

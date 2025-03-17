@@ -1,11 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // ✅ FIX: Correct router import
 
 export default function CheckNetworkPage() {
   const [useSafdata, setUseSafdata] = useState(false);
+  const [decodedResponse, setDecodedResponse] = useState("");
+
+
+  const encodedString =
+  "EHPTT4veswhDYZylNFDWH2ggX+WMVqpTtxspZ/3FL1cTViCfjfkj3bMFKCvwxc5bl+qketAEPaarrfuFyV70lJw/LSMm2pwiNQMs787o+YRYweJnGqDgKRaeEDVmRcdjEhUNwHieaiv3LVpIvY+hp523jFRQTgz6g0qq1+RFQakv5IyQArGIurFrhdQtrtZVWLkDuLfBMf2l0j7SVuNpmYKJ6nIv3bVcS67UhAXnOrRYtkxoXaxkxUM0dT7jTz0qsiihlGazDymljo7PIbSdE1fpDzvY0w0wfQ3Feflix0NhXWRMd99UCLfGcWzWN0IegQioerXe7Yz4XJJy91gMvWhf";
+
+function decodeBase64(encodedString: string) {
+  try {
+    return atob(encodedString);
+  } catch (error) {
+    console.error("Base64 decoding failed:", error);
+    return "Decoding Error";
+  }
+}
+
+useEffect(() => {
+  const decoded = decodeBase64(encodedString);
+  console.log("Decoded String:", decoded);
+}, []);
+ 
 
   useEffect(() => {
     async function checkNetwork() {
